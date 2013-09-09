@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GumbySlwps</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag :modernizr %>
+
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+
+
+
+<div class="navbar" id="nav1" style="background-color: #428bca">
+  <!-- Toggle for mobile navigation, targeting the <ul> -->
+
+    <a class="toggle" gumby-trigger="#nav1 > .row > ul" href="#"><i class="icon-menu"></i></a>
+    <h1 class="four columns logo">
+      <a href="#" style="margin-top: -15px">
+        <%= image_tag "/assets/newtimes_logo.png"%>
+      </a>
+    </h1>
+    <ul class="eight columns" >
+      <li><a href="/home"><i class="icon-home"></i> Home</a></li>
+      <li><a href="/job_seekers"><i class="icon-search"></i> Job Seekers</a></li>
+      <li><a href="/employers"><i class="icon-flag"></i> Employers</a></li>
+      <li><a href="/about_us"><i class="icon-droplet"></i> About Us</a></li>
+      <li><a href="/contact_us"><i class="icon-phone"></i> Contact Us</a></li>
+      <% if current_user %>
+          <li style="color: white"><%= current_user.email %></li>
+          <li><i class="icon-logout"></i> <%= link_to "Log Out", logout_path %></li>
+      <% else %>
+          <li>
+            <%= link_to signup_path do %>
+                <i class="icon-user-add"></i>
+                Sign Up
+            <% end %>
+          </li>
+          <li>
+            <%= link_to login_path do %>
+                <i class="icon-login"></i>
+                Log In
+            <% end %>
+            </li>
+      <% end %>
+
+    </ul>
+</div>
+	
+
+	
+<%= yield %>
+<div class=" navbar" gumby-fixed="top" id="nav3" style=" background-color:#fff; margin-bottom: 0px; margin-top: 25px; border-top:1px solid #eee">
+  <div class="row">
+    <a class="toggle" gumby-trigger="#nav3 &gt; .row &gt; ul" href="#"><i class="icon-menu"></i></a>
+    <ul>
+      <li style="margin-top: -20px">
+        <a href="#" style="color:#3276b1; line-height: 25px; ">
+          Connect With Us
+          <br>
+          Call Us
+          <i class="icon-phone"></i>
+          1-800-CUP-CAKE
+        </a>
+      </li>
+
+      <li style="">
+        <a href="#" style="color:#3276b1; line-height: 25px; ">
+          <i class="icon-mail"></i>
+          Email Us
+          <br>
+          info@newtimes.ca
+        </a>
+
+      </li>
+      <li style="">
+        <a href="#" style="color:#3276b1; line-height: 25px;">
+          © Newtimes Inc
+          <br>
+          All Rights Reserved
+        </a>
+
+      </li>
+      <li>
+        <a href="#" style="color:#3276b1;">
+          <i class="icon-facebook-squared" style="font-size:30px;color:#428bca;"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#" style="color:#3276b1;">
+          <i class="icon-twitter" style="font-size:30px; color:red"></i>
+        </a>
+      </li>
+
+    </ul>
+  </div>
+</div>
+</body>
+</html>

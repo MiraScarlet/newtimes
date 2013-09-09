@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="two columns"></div>
+  <div class="eight columns" style="border:1px solid #333333; padding: 25px 50px 25px 50px; margin-top: 50px; margin-bottom: 50px">
+    <h2 style="margin-bottom: 25px;"><i class="icon-user-add"></i> Sign Up</h2>
+
+    <%= form_for @user do |f| %>
+      <% if @user.errors.any? %>
+        <div class="error_messages">
+          <h2>Form is invalid</h2>
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <ul class="row" >
+        <li class="prepend field">
+          <%= f.label :email, :class => 'three columns adjoined' %>
+          <%= f.text_field :email, :class => 'xwide text input', :placeholder => 'Your email address' %>
+        </li>
+        <li class="prepend field">
+          <%= f.label :password, :class => 'three columns adjoined' %>
+          <%= f.text_field :password, :class => 'xwide text input', :placeholder => 'Your password' %>
+        </li>
+        <li class="prepend field" style="margin-bottom: 25px;">
+          <%= f.label :password_confirmation, :class => 'five columns adjoined' %>
+          <%= f.text_field :password_confirmation, :class => 'seven columns text input', :placeholder => 'Confirm your password', :style => 'width:54.33%' %>
+        </li>
+        <li class="medium primary btn">
+          <%= f.submit "Sign Up" %>
+        </li>
+      </ul>
+    <% end %>
+  </div>
+  <div class="two columns"></div>
+</div>
+
+

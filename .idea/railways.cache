@@ -1,0 +1,37 @@
+          employees GET    /employees(.:format)                employees#index
+                    POST   /employees(.:format)                employees#create
+       new_employee GET    /employees/new(.:format)            employees#new
+      edit_employee GET    /employees/:id/edit(.:format)       employees#edit
+           employee GET    /employees/:id(.:format)            employees#show
+                    PUT    /employees/:id(.:format)            employees#update
+                    DELETE /employees/:id(.:format)            employees#destroy
+               home GET    /home(.:format)                     web_page#home
+        job_seekers GET    /job_seekers(.:format)              web_page#js
+          employers GET    /employers(.:format)                web_page#employers
+           about_us GET    /about_us(.:format)                 web_page#about
+         contact_us GET    /contact_us(.:format)               web_page#contact
+             logout GET    /logout(.:format)                   sessions#destroy
+              login GET    /login(.:format)                    sessions#new
+             signup GET    /signup(.:format)                   users#new
+               root        /                                   web_page#home
+              users GET    /users(.:format)                    users#index
+                    POST   /users(.:format)                    users#create
+           new_user GET    /users/new(.:format)                users#new
+          edit_user GET    /users/:id/edit(.:format)           users#edit
+               user GET    /users/:id(.:format)                users#show
+                    PUT    /users/:id(.:format)                users#update
+                    DELETE /users/:id(.:format)                users#destroy
+           sessions GET    /sessions(.:format)                 sessions#index
+                    POST   /sessions(.:format)                 sessions#create
+        new_session GET    /sessions/new(.:format)             sessions#new
+       edit_session GET    /sessions/:id/edit(.:format)        sessions#edit
+            session GET    /sessions/:id(.:format)             sessions#show
+                    PUT    /sessions/:id(.:format)             sessions#update
+                    DELETE /sessions/:id(.:format)             sessions#destroy
+    password_resets GET    /password_resets(.:format)          password_resets#index
+                    POST   /password_resets(.:format)          password_resets#create
+ new_password_reset GET    /password_resets/new(.:format)      password_resets#new
+edit_password_reset GET    /password_resets/:id/edit(.:format) password_resets#edit
+     password_reset GET    /password_resets/:id(.:format)      password_resets#show
+                    PUT    /password_resets/:id(.:format)      password_resets#update
+                    DELETE /password_resets/:id(.:format)      password_resets#destroy

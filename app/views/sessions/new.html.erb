@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="three columns"></div>
+  <div class="six columns" style="border:1px solid #333333; padding: 25px 50px 25px 50px; margin-top: 50px; margin-bottom: 50px">
+    <h2 style="margin-bottom: 25px;"><i class="icon-login"></i> Log In</h2>
+
+    <%= form_tag sessions_path do %>
+      <ul class="row">
+        <li class="prepend field">
+          <%= label_tag :email, nil, :class => 'four columns adjoined' %>
+          <%= text_field_tag :email, params[:email],  :class => 'xwide text input', :placeholder => 'Your email address', :style => 'width:68%' %>
+        </li>
+        <li class="prepend field">
+          <%= label_tag :password, nil, :class => 'four columns adjoined' %>
+          <%= password_field_tag :password, nil, :class => 'xwide text input', :placeholder => 'Your password', :style => 'width:68%' %>
+        </li>
+        <li class="btn primary medium">
+          <%= submit_tag "Log In" %>
+        </li>
+      </ul>
+    <% end %>
+    <p><%= link_to "forgotten password?", new_password_reset_path %></p>
+    <div class="">
+      <%= check_box_tag :remember_me, 1, params[:remember_me] %>
+      <%= label_tag :remember_me %>
+    </div>
+  
+  </div>
+  <div class="three columns"></div>
+</div>
+
+

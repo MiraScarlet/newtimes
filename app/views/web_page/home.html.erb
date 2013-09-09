@@ -1,0 +1,90 @@
+<div class="container" style="margin-top: -20px; text-align: center">
+  <ul class="bxslider" style="display: inline-block;">
+    <li><%= image_tag('recruitment1.jpg', :style => 'margin: 0 auto') %></li>
+    <li><%= image_tag('recruitment4.jpg', :style => 'margin: 0 auto') %></li>
+    <li><%= image_tag('recruitment6.jpg', :style => 'margin: 0 auto') %></li>
+  </ul>
+</div>
+
+<div class="row" style="margin-top: 25px">
+  <div class="four columns caption-box">
+    <h3 class="subheading">
+      <i class="icon-briefcase"></i>
+      Job Seekers
+    </h3>
+    <p class="justified" style="font-size: 15px;">Our focus is to find the best- matched candidates for each job &amp; best-matched job for each candidate.</p>
+    <div class="medium primary btn">
+      <a href="/job_seekers">
+        Read More
+        <i class="icon-right-open"></i>
+      </a>
+    </div>
+  </div>
+  <div class="four columns caption-box">
+    <h3 class="subheading">
+      <i class="icon-flag"></i>
+      Employers
+    </h3>
+    <p class="justified" style="font-size: 15px;">Whether the need is for a single individual for a short period of time or personnel for on- going employment.</p>
+    <div class="medium primary btn">
+      <a href="/employers">
+        Read More
+        <i class="icon-right-open"></i>
+      </a>
+    </div>
+  </div>
+  <div class="four columns caption-box">
+    <h3 class="subheading">
+      <i class="icon-globe"></i>
+      Our Company
+    </h3>
+    <p class="justified" style="font-size: 15px;">We believe in your success. Contact us today to discuss how our staffing solutions can save.</p>
+    <div class="medium primary btn" style="margin-top: 21px">
+      <a href="/about_us">
+        Read More
+        <i class="icon-right-open"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="container" style="border-top: 1px solid #eee; margin-top: 25px">
+  <div class="row" style="margin-top: 15px">
+
+      <h3 class="subheading" style="border: none; text-align: center">
+        <i class="icon-thumbs-up"></i>
+        Success Stories
+      </h3>
+      <div class="row">
+        <div class="two columns">
+          <img alt="Success_logo" src="/assets/success_logo-d7ccdc820a4ab60ad818bc03795fcd49.jpg">
+        </div>
+        <div class="ten columns">
+          <p style="font-size:18px;font-style:italic;">
+            "Newtimes staffing agency has been a tremendous part of our success. Their speed in fulfilling our temporary staffing needs cannot be met by any other agency. If you are a business with fluctuating labour requirements, we highly recommend contacting Newtimes. They are reliable."
+          </p>
+        </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+
+<script>
+    $(document).ready(function(){
+        $('.bxslider').bxSlider(
+                {
+                    auto: true,
+                    nextSelector: '#slider-next',
+                    prevSelector: '#slider-prev',
+                    nextText: 'Onward →',
+                    prevText: '← Go back',
+                    pause: 7000,
+                    speed: 500
+
+                }
+        );
+    });
+</script>

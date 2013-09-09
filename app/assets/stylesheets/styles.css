@@ -1,0 +1,13 @@
+.justified{
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.subheading{
+    color:#3276b1;font-weight:200;text-shadow:0 1px 2px #191A1B, 0 1px 0 #191A1B; margin-bottom: 15px ;
+    border-bottom: 2px solid #3276b1;
+}
+
+.caption-box{
+    background-color:#f9f9f9; height: 225px; text-align: center; padding: 10px 15px 10px 15px;
+}

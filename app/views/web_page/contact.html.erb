@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="row">
+    <div class="eight columns">
+
+          <h2 class="subheading" style="border: none">
+            <i class="icon-phone"></i>
+            Contact Us
+          </h2>
+      <p id="notice" style="margin-left: 12px; margin-top: -15px"><%= notice %></p>
+      <ul class="ten columns">
+        <%= form_for @employee, :url => '/contact', :html => {:multipart => true} do |form| %>
+            <li class="prepend field">
+              <%= form.label :name, :class => 'three columns adjoined' %>
+              <%= form.text_field :name, :class => 'xwide text input', :placeholder => 'Your full name' %>
+            </li>
+            <li class="prepend field">
+              <%= form.label :email, :class => 'three columns adjoined' %>
+              <%= form.text_field :email, :class => 'xwide text input', :placeholder => 'Your email address' %>
+            </li>
+            <li class="prepend field">
+              <%= form.label :address, :class => 'three columns adjoined' %>
+              <%= form.text_field :address, :class => 'xwide text input', :placeholder => 'Your complete address' %>
+            </li>
+            <li class="prepend field">
+              <%= form.label :phone, :class => 'three columns adjoined' %>
+              <%= form.text_field :phone, :class => 'xwide text input', :placeholder => 'Your contact number' %>
+            </li>
+            <li class="prepend field">
+              <%= form.label :job_details, :class => 'three columns adjoined' %>
+              <%= form.text_field :job_details, :class => 'xwide text input', :placeholder => 'Job Details' %>
+            </li>
+            <li class="prepend field">
+              <%= form.label :shift, :class => 'three columns adjoined' %>
+              <%= form.text_field :shift, :class => 'xwide text input', :placeholder => 'Preferred shift' %>
+            </li>
+            <li class="prepend field">
+              <%= form.label :message, :class => 'three columns adjoined' %>
+              <%= form.text_field :message, :class => 'xwide text input', :placeholder => 'Message' %>
+            </li>
+            <li class="append field">
+              <%= form.label :resume, :class => 'three columns adjoined' %>
+              <%= form.file_field :profile, :style => 'margin-top: 5px' %>
+            </li>
+
+            <div class="medium btn primary"><%= form.submit %></div>
+        <% end %>
+      </ul>
+    </div>
+    <div class="four columns">
+      <h4 class="subheading" style="border: none">
+        <i class="icon-comment"></i>
+        What I have to say...
+      </h4>
+      <blockquote>
+        <p class="justified" style="font-size: 15px;">I get paid on time. I get paid everyweek. Newtimes keeps me and my family going. Did I say I get paid on time, everytime?</p>
+        <small style="font-size: 12px;">
+          John Doe
+        </small>
+      </blockquote>
+      <p style="margin-top:530px"></p>
+    </div>
+  </div>
+
+</div>
