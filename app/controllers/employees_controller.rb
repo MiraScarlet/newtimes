@@ -1,9 +1,11 @@
 class EmployeesController < ApplicationController
+
+
   # GET /employees
   # GET /employees.json
   def index
     @employees = Employee.all
-
+    @employee = Employee.new
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @employees }
@@ -45,8 +47,13 @@ class EmployeesController < ApplicationController
 
     respond_to do |format|
       if @employee.save
-        format.html { redirect_to '/contact', notice: 'Employee was successfully created.' }
-        format.json { render json: @employee, status: :created, location: @employee }
+        if logged_in?
+          format.html { redirect_to @employee, notice: 'Employee was successfully created.' }
+          format.json { render json: @employee, status: :created, location: @employee }
+        else
+          format.html { redirect_to '/contact', notice: 'Employee was successfully created.' }
+          format.json { render json: @employee, status: :created, location: @employee }
+        end
       else
         format.html { render action: "new" }
         format.json { render json: @employee.errors, status: :unprocessable_entity }

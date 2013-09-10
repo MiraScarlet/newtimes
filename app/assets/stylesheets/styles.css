@@ -11,3 +11,17 @@
 .caption-box{
     background-color:#f9f9f9; height: 225px; text-align: center; padding: 10px 15px 10px 15px;
 }
+
+.table-head{
+
+    padding:10px 5px 10px 5px;
+}
+
+.table-head-rounded-left{
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+.table-head-rounded-right{
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}

@@ -1,35 +1,161 @@
-<h1>Listing employees</h1>
+<div class="container" style="background-color: #233441; color: #fff; margin-top: -20px">
+  <div class="row" style="padding: 20px 0 0px 0">
+    <ul class="seven columns">
+      <%= form_tag results_query_path, :class => '', :style => '', :method => 'get' do %>
+          <li class="append field">
+            <%= text_field_tag :query, params[:query], :class => 'xwide search input', :placeholder=>"Search"  %>
+            <div class="medium primary btn">
+              <button type="submit" style="margin-top: 1px">
+                <i class="icon-search"></i>
+              </button>
+            </div>
+          </li>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Address</th>
-    <th>Phone</th>
-    <th>Job details</th>
-    <th>Shift</th>
-    <th>Message</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+      <% end %>
+    </ul>
+    <div class="two columns"></div>
+    <div class="three columns">
+      <div class="medium primary btn"><a href="#" id="md1"><i class="icon-user-add"></i> New Employee</a></div>
+    </div>
 
-<% @employees.each do |employee| %>
-  <tr>
-    <td><%= employee.name %></td>
-    <td><%= employee.email %></td>
-    <td><%= employee.address %></td>
-    <td><%= employee.phone %></td>
-    <td><%= employee.job_details %></td>
-    <td><%= employee.shift %></td>
-    <td><%= employee.message %></td>
-    <td><%= link_to 'Show', employee %></td>
-    <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
-    <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+  </div>
+
+
+
+
+
+
+</div>
+<% unless  @employee_search.blank?  %>
+    <div class="row">
+      <h2 style="text-align: center">Search results</h2>
+      <div class="row table-head table-head-rounded-left table-head-rounded-right" style="background-color: #3085d6; color: #fff;">
+        <div class="two columns">First Name</div>
+        <div class="two columns">Last Name</div>
+        <div class="one columns">Gender</div>
+        <div class="two columns">Job Details</div>
+        <div class="two columns">Shift</div>
+        <div class="two columns">Location</div>
+        <div class="one columns"></div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <% @employees_search.each_with_index do |employee, index| %>
+          <div class="row">
+            <div class="two columns"><%= employee.name %></div>
+            <div class="two columns"><%= employee.last_name %></div>
+            <div class="one columns"><%= employee.gender %></div>
+            <div class="two columns"><%= employee.job_details %></div>
+            <div class="two columns"><%= employee.shift %></div>
+            <div class="two columns"><%= employee.address %></div>
+            <div class="one columns" id = <%="mds-#{index}".html_safe %> ><i class="icon-down-circled"></i></div>
+          </div>
+          <div class="drawer" style=" margin-bottom:5px; background-color: #ffffff; box-shadow: none;" id=<%= "mydrawer-mds-#{index}" %>  >
+            <div class="row" style="padding:10px;border:1px solid #eee; border-radius:5px;">
+              <div class="row">
+                <div class="two columns"><h5>Name</h5></div>
+                <div class="two columns"><h5><%= employee.name %></h5></div>
+                <div class="two columns"><h5><%= employee.last_name %></h5></div>
+                <div class="two columns"><h5>Gender: <%= employee.gender %></h5></div>
+                <div class="two columns"><h5>Shift: <%= employee.shift %></h5></div>
+                <div class="two columns"><h5>DNR: <%= employee.dnr %></h5></div>
+              </div>
+              <div class="row">
+                <div class="three columns"><h5>Email: <%= employee.email %></h5></div>
+                <div class="three columns"><h5>Phone: <%= employee.phone %></h5></div>
+                <div class="three columns"><h5>Job Details: <%= employee.job_details %></h5></div>
+                <div class="three columns"><h5>Rate of Pay: <%= employee.gender %></h5></div>
+              </div>
+              <div class="row">
+                <div class="six columns">
+                  <h5>Message</h5>
+                  <%= employee.message %>
+                </div>
+                <div class="four columns">
+                  <h5>Address</h5>
+                  <%= employee.address %>
+                </div>
+                <div class="two columns">
+                  <h5>Resume: <%= employee.profile %></h5>
+                  <div class="small btn warning"><%= link_to 'Edit', edit_employee_path(employee) %></div>
+                  <div class="small btn primary"><%= link_to 'Show', employee_path(employee) %></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <%=  "<script>$('#mds-#{index}').click(function() {$('#mydrawer-mds-#{index}').toggleClass('active');}); </script>".html_safe     %>
+      <% end %>
+    </div>
 <% end %>
-</table>
 
-<br />
 
-<%= link_to 'New Employee', new_employee_path %>
+<div class="row">
+  <h2 style="text-align: center">Listing all employees</h2>
+  <div class="row table-head table-head-rounded-left table-head-rounded-right" style="background-color: #3085d6; color: #fff;">
+    <div class="two columns">First Name</div>
+    <div class="two columns">Last Name</div>
+    <div class="one columns">Gender</div>
+    <div class="two columns">Job Details</div>
+    <div class="two columns">Shift</div>
+    <div class="two columns">Location</div>
+    <div class="one columns"></div>
+  </div>
+</div>
+
+<div class="row">
+    <% @employees.each_with_index do |employee, index| %>
+      <div class="row">
+        <div class="two columns"><%= employee.name %></div>
+        <div class="two columns"><%= employee.last_name %></div>
+        <div class="one columns"><%= employee.gender %></div>
+        <div class="two columns"><%= employee.job_details %></div>
+        <div class="two columns"><%= employee.shift %></div>
+        <div class="two columns"><%= employee.address %></div>
+        <div class="one columns" id = <%="md-#{index}".html_safe %> ><i class="icon-down-circled"></i></div>
+      </div>
+      <div class="drawer" style=" margin-bottom:5px; background-color: #ffffff; box-shadow: none;" id=<%= "mydrawer-md-#{index}" %>  >
+        <div class="row" style="padding:10px;border:1px solid #eee; border-radius:5px;">
+          <div class="row">
+            <div class="two columns"><h5>Name</h5></div>
+            <div class="two columns"><h5><%= employee.name %></h5></div>
+            <div class="two columns"><h5><%= employee.last_name %></h5></div>
+            <div class="two columns"><h5>Gender: <%= employee.gender %></h5></div>
+            <div class="two columns"><h5>Shift: <%= employee.shift %></h5></div>
+            <div class="two columns"><h5>DNR: <%= employee.dnr %></h5></div>
+          </div>
+          <div class="row">
+            <div class="three columns"><h5>Email: <%= employee.email %></h5></div>
+            <div class="three columns"><h5>Phone: <%= employee.phone %></h5></div>
+            <div class="three columns"><h5>Job Details: <%= employee.job_details %></h5></div>
+            <div class="three columns"><h5>Rate of Pay: <%= employee.gender %></h5></div>
+          </div>
+          <div class="row">
+            <div class="six columns">
+              <h5>Message</h5>
+              <%= employee.message %>
+            </div>
+            <div class="four columns">
+              <h5>Address</h5>
+              <%= employee.address %>
+            </div>
+            <div class="two columns">
+              <h5>Resume: <%= employee.profile %></h5>
+              <div class="small btn warning"><%= link_to 'Edit', edit_employee_path(employee) %></div>
+              <div class="small btn primary"><%= link_to 'Show', employee_path(employee) %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <%=  "<script>$('#md-#{index}').click(function() {$('#mydrawer-md-#{index}').toggleClass('active');}); </script>".html_safe     %>
+    <% end %>
+</div>
+
+
+
+<script>
+    $('#md1').click(function() {
+        $('#mydrawer1').toggleClass('active');
+    });
+</script>

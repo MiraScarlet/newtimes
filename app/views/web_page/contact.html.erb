@@ -10,8 +10,18 @@
       <ul class="ten columns">
         <%= form_for @employee, :url => '/contact', :html => {:multipart => true} do |form| %>
             <li class="prepend field">
-              <%= form.label :name, :class => 'three columns adjoined' %>
-              <%= form.text_field :name, :class => 'xwide text input', :placeholder => 'Your full name' %>
+              <%= form.label :first_name, :class => 'three columns adjoined' %>
+              <%= form.text_field :name, :class => 'xwide text input', :placeholder => 'Your first name' %>
+            </li>
+            <li class="prepend field">
+              <%= form.label :last_name, :class => 'three columns adjoined' %>
+              <%= form.text_field :last_name, :class => 'xwide text input', :placeholder => 'Your last name' %>
+            </li>
+            <li class="prepend field">
+              <%= form.label :gender, :class => 'three columns adjoined' %>
+              <div class="picker">
+                <%= form.select :gender, [['Male', 'Male'], ['Female', 'Female']] %>
+              </div>
             </li>
             <li class="prepend field">
               <%= form.label :email, :class => 'three columns adjoined' %>
@@ -31,7 +41,10 @@
             </li>
             <li class="prepend field">
               <%= form.label :shift, :class => 'three columns adjoined' %>
-              <%= form.text_field :shift, :class => 'xwide text input', :placeholder => 'Preferred shift' %>
+              <div class="picker">
+                <%= form.select :shift, [['Morning', 'Morning'], ['Afternoon', 'Afternoon'], ['Night', 'Night'], ['Custom', 'Custom']] %>
+              </div>
+
             </li>
             <li class="prepend field">
               <%= form.label :message, :class => 'three columns adjoined' %>

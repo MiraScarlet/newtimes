@@ -24,7 +24,8 @@ gem 'gumby-framework'
 gem "modernizr-rails"
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'jquery-rails'
-gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+gem "paperclip"
+gem 'pg_search'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

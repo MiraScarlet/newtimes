@@ -4,8 +4,13 @@ class User < ActiveRecord::Base
 	has_secure_password
 	  
 	attr_accessible :email, :password, :password_confirmation
-	  
-	validates_uniqueness_of :email
+
+
+  validates :email,
+            :presence => true,
+            :uniqueness => true,
+            :format => { :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i }
+  validates_presence_of :password, :password_confirmation
 
 	before_create { generate_token(:auth_token) }
 

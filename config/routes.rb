@@ -18,6 +18,9 @@ GumbySlwps::Application.routes.draw do
   root :to => "web_page#home"
   post '/contact' => 'employees#create'
   get '/contact' => 'web_page#contact'
+
+  get "results/query"
+
   resources :users
   resources :sessions
   resources :password_resets

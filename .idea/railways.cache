@@ -14,6 +14,8 @@
               login GET    /login(.:format)                    sessions#new
              signup GET    /signup(.:format)                   users#new
                root        /                                   web_page#home
+            contact POST   /contact(.:format)                  employees#create
+                    GET    /contact(.:format)                  web_page#contact
               users GET    /users(.:format)                    users#index
                     POST   /users(.:format)                    users#create
            new_user GET    /users/new(.:format)                users#new

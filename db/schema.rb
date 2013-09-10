@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130909113158) do
+ActiveRecord::Schema.define(:version => 20130909145608) do
 
   create_table "employees", :force => true do |t|
     t.string   "name"
@@ -27,6 +27,10 @@ ActiveRecord::Schema.define(:version => 20130909113158) do
     t.string   "profile_content_type"
     t.integer  "profile_file_size"
     t.datetime "profile_updated_at"
+    t.string   "last_name"
+    t.string   "gender"
+    t.boolean  "dnr"
+    t.string   "rate_of_pay"
   end
 
   create_table "users", :force => true do |t|
