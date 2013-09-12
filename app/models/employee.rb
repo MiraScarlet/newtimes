@@ -20,6 +20,28 @@ class Employee < ActiveRecord::Base
 
   include PgSearch
   multisearchable :against => [:name, :last_name, :email, :job_details, :message, :shift, :phone, :gender, :rate_of_pay]
+  pg_search_scope :fts_for,
+                  :against => {
+                      :last_name => 'A',
+                      :name=> 'B',
+                      :email=> 'C',
+                      :job_details=> 'D',
+                      :message=> 'E',
+                      :address=> 'F',
+                      :phone=> 'G',
+                      :shift=> 'H',
+                      :gender=> 'I',
+                      :rate_of_pay=> 'J'
+                  },
+                  :using => {
+                      :tsearch =>
+                          {
+                              :prefix => true,
+                              :dictionary => "english",
+                              :any_word => true
+                          },
+                      :trigram => {},
+                  }
 
 
 end

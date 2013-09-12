@@ -158,59 +158,60 @@
     </tr>
     </thead>
     <tbody>
-    <% @employees.each_with_index do |employee, index| %>
-        <tr>
-          <td ><%= employee.name %></td>
-          <td ><%= employee.last_name %></td>
-          <td ><%= employee.gender %></td>
-          <td ><%= employee.job_details %></td>
-          <td ><%= employee.shift %></td>
-          <td ><%= employee.address %></td>
-          <td><i class="icon-info-circled switch" id = <%="mm-#{index}".html_safe %> ></i> <%= link_to employee_path(employee) do %><i class="icon-right-circled"></i><% end %></td>
-        </tr>
-        <div class="modal" id = <%="mm-modal-#{index}".html_safe %> >
-          <div class="content">
-            <a class="close switch" id=<%="mm-modalc-#{index}".html_safe %> ><i class="icon-cancel" ></i></a>
+        <% @employees.each_with_index do |employee, index| %>
+            <tr>
+              <td ><%= employee.name %></td>
+              <td ><%= employee.last_name %></td>
+              <td ><%= employee.gender %></td>
+              <td ><%= employee.job_details %></td>
+              <td ><%= employee.shift %></td>
+              <td ><%= employee.address %></td>
+              <td><i class="icon-info-circled switch" id = <%="mm-#{index}".html_safe %> ></i> <%= link_to employee_path(employee) do %><i class="icon-right-circled"></i><% end %></td>
+            </tr>
+            <div class="modal" id = <%="mm-modal-#{index}".html_safe %> >
+              <div class="content">
+                <a class="close switch" id=<%="mm-modalc-#{index}".html_safe %> ><i class="icon-cancel" ></i></a>
 
-            <div class="row" style="margin-top: 20px">
-              <div class="row" style="padding: 5px 10px 0px 10px">
-                <div class="two columns"><h6 style="font-weight: bold"><%= employee.name %></h6></div>
-                <div class="two columns"><h6 style="font-weight: bold; word-wrap:break-word;"><%= employee.last_name %></h6></div>
-                <div class="two columns"><h6 style="font-weight: bold">Gender:</h6><p><%= employee.gender %></p></div>
-                <div class="two columns"><h6 style="font-weight: bold">Job_D:</h6><p style="word-wrap:break-word;"><%= employee.job_details %></p></div>
-                <div class="two columns"><h6 style="font-weight: bold">Shift: <p><%= employee.shift %></p></h6></div>
-                <div class="two columns"><h6 style="font-weight: bold">Location: <p><%= employee.address %></p></h6></div>
+                <div class="row" style="margin-top: 20px">
+                  <div class="row" style="padding: 5px 10px 0px 10px">
+                    <div class="two columns"><h6 style="font-weight: bold"><%= employee.name %></h6></div>
+                    <div class="two columns"><h6 style="font-weight: bold; word-wrap:break-word;"><%= employee.last_name %></h6></div>
+                    <div class="two columns"><h6 style="font-weight: bold">Gender:</h6><p><%= employee.gender %></p></div>
+                    <div class="two columns"><h6 style="font-weight: bold">Job_D:</h6><p style="word-wrap:break-word;"><%= employee.job_details %></p></div>
+                    <div class="two columns"><h6 style="font-weight: bold">Shift: <p><%= employee.shift %></p></h6></div>
+                    <div class="two columns"><h6 style="font-weight: bold">Location: <p><%= employee.address %></p></h6></div>
 
-              </div>
-              <div class="row" style="padding: 5px 10px 0px 10px">
-                <div class="three columns"><h6 style="font-weight: bold">Email: <p><%= employee.email %></p></h6></div>
-                <div class="three columns"><h6 style="font-weight: bold">Phone: <p><%= employee.phone %></p></h6></div>
-                <div class="three columns"><h6 style="font-weight: bold">DNR: <p><%= employee.dnr %></p></h6></div>
-                <div class="three columns"><h6 style="font-weight: bold">Rate of Pay: <p><%= employee.gender %></p></h6></div>
-              </div>
-              <div class="row" style="padding: 5px 10px 5px 10px; margin-bottom: 10px">
-                <div class="five columns">
-                  <h6 style="font-weight: bold">Message</h6>
-                  <p style="word-wrap:break-word;"><%= employee.message %><p>
+                  </div>
+                  <div class="row" style="padding: 5px 10px 0px 10px">
+                    <div class="three columns"><h6 style="font-weight: bold">Email: <p><%= employee.email %></p></h6></div>
+                    <div class="three columns"><h6 style="font-weight: bold">Phone: <p><%= employee.phone %></p></h6></div>
+                    <div class="three columns"><h6 style="font-weight: bold">DNR: <p><%= employee.dnr %></p></h6></div>
+                    <div class="three columns"><h6 style="font-weight: bold">Rate of Pay: <p><%= employee.gender %></p></h6></div>
+                  </div>
+                  <div class="row" style="padding: 5px 10px 5px 10px; margin-bottom: 10px">
+                    <div class="five columns">
+                      <h6 style="font-weight: bold">Message</h6>
+                      <p style="word-wrap:break-word;"><%= employee.message %><p>
+                    </div>
+                    <div class="four columns">
+                      <h6 style="font-weight: bold">Address</h6>
+                      <p><%= employee.address %></p>
+                    </div>
+                    <div class="three columns">
+                      <h6 style="font-weight: bold">Resume: <p><%= employee.profile_file_name  %></p></h6>
+                      <div class="small btn warning"><%= link_to 'Edit', edit_employee_path(employee) %></div>
+                      <div class="small btn primary"><%= link_to 'Show', employee_path(employee) %></div>
+                    </div>
+                  </div>
                 </div>
-                <div class="four columns">
-                  <h6 style="font-weight: bold">Address</h6>
-                  <p><%= employee.address %></p>
-                </div>
-                <div class="three columns">
-                  <h6 style="font-weight: bold">Resume: <p><%= employee.profile_file_name  %></p></h6>
-                  <div class="small btn warning"><%= link_to 'Edit', edit_employee_path(employee) %></div>
-                  <div class="small btn primary"><%= link_to 'Show', employee_path(employee) %></div>
-                </div>
               </div>
+
             </div>
-          </div>
 
-        </div>
-
-        <%=  "<script>$('#mm-#{index}').click(function() {$('#mm-modal-#{index}').toggleClass('active');}); </script>".html_safe     %>
-        <%=  "<script>$('#mm-modalc-#{index}').click(function() {$('#mm-modal-#{index}').toggleClass('active');}); </script>".html_safe     %>
-    <% end %>
+            <%=  "<script>$('#mm-#{index}').click(function() {$('#mm-modal-#{index}').toggleClass('active');}); </script>".html_safe     %>
+            <%=  "<script>$('#mm-modalc-#{index}').click(function() {$('#mm-modal-#{index}').toggleClass('active');}); </script>".html_safe     %>
+        <% end %>
+    </tbody>
   </table>
 
 </div>

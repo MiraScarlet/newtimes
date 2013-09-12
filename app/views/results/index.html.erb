@@ -1,0 +1,100 @@
+<div class="row" style="margin-top: 25px">
+  <h2 style="text-align: center;">Search Results</h2>
+  <% if  @pg_search_documents.blank?  %>
+        <h3 style="text-align: center">Search matches no employee or employer. Please try again with a different term.</h3>
+  <% else %>
+
+      <table id="employees-all">
+        <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Gender</th>
+          <th>Job Details</th>
+          <th>Shift</th>
+          <th>Location</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+            <% @pg_search_documents.each do |pg_search_document, index| %>
+                <% id = pg_search_document.searchable_id.to_i %>
+                <% if pg_search_document.searchable_type == 'Employer'  %>
+                    <% employer = Employer.find(id) %>
+                    <tr>
+                      <td><%= employer.name %></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td>
+                        <%= link_to "<i class='icon-pencil'></i>".html_safe, edit_employer_path(employer) %>
+                        <%= link_to "<i class='icon-right-circled'></i>".html_safe, employer %>
+                        <%= link_to "<i class='icon-trash'></i>".html_safe, employer, method: :delete, data: { confirm: 'Are you sure?' } %>
+                      </td>
+                    </tr>
+
+                <% else pg_search_document.searchable_type == 'Employee'  %>
+                    <% employee = Employee.find(id) %>
+                    <tr>
+                      <td ><%= employee.name %></td>
+                      <td ><%= employee.last_name %></td>
+                      <td ><%= employee.gender %></td>
+                      <td ><%= employee.job_details %></td>
+                      <td ><%= employee.shift %></td>
+                      <td ><%= employee.address %></td>
+                      <td><i class="icon-info-circled switch" id = <%="mm-#{employee.id}".html_safe %> ></i> <%= link_to employee_path(employee) do %><i class="icon-right-circled"></i><% end %></td>
+                    </tr>
+                    <div class="modal" id = <%="mm-modal-#{employee.id}".html_safe %> >
+                      <div class="content">
+                        <a class="close switch" id=<%="mm-modalc-#{employee.id}".html_safe %> ><i class="icon-cancel" ></i></a>
+
+                        <div class="row" style="margin-top: 20px">
+                          <div class="row" style="padding: 5px 10px 0px 10px">
+                            <div class="two columns"><h6 style="font-weight: bold"><%= employee.name %></h6></div>
+                            <div class="two columns"><h6 style="font-weight: bold; word-wrap:break-word;"><%= employee.last_name %></h6></div>
+                            <div class="two columns"><h6 style="font-weight: bold">Gender:</h6><p><%= employee.gender %></p></div>
+                            <div class="two columns"><h6 style="font-weight: bold">Job_D:</h6><p style="word-wrap:break-word;"><%= employee.job_details %></p></div>
+                            <div class="two columns"><h6 style="font-weight: bold">Shift: <p><%= employee.shift %></p></h6></div>
+                            <div class="two columns"><h6 style="font-weight: bold">Location: <p><%= employee.address %></p></h6></div>
+
+                          </div>
+                          <div class="row" style="padding: 5px 10px 0px 10px">
+                            <div class="three columns"><h6 style="font-weight: bold">Email: <p><%= employee.email %></p></h6></div>
+                            <div class="three columns"><h6 style="font-weight: bold">Phone: <p><%= employee.phone %></p></h6></div>
+                            <div class="three columns"><h6 style="font-weight: bold">DNR: <p><%= employee.dnr %></p></h6></div>
+                            <div class="three columns"><h6 style="font-weight: bold">Rate of Pay: <p><%= employee.gender %></p></h6></div>
+                          </div>
+                          <div class="row" style="padding: 5px 10px 5px 10px; margin-bottom: 10px">
+                            <div class="five columns">
+                              <h6 style="font-weight: bold">Message</h6>
+                              <p style="word-wrap:break-word;"><%= employee.message %><p>
+                            </div>
+                            <div class="four columns">
+                              <h6 style="font-weight: bold">Address</h6>
+                              <p><%= employee.address %></p>
+                            </div>
+                            <div class="three columns">
+                              <h6 style="font-weight: bold">Resume: <p><%= employee.profile_file_name  %></p></h6>
+                              <div class="small btn warning"><%= link_to 'Edit', edit_employee_path(employee) %></div>
+                              <div class="small btn primary"><%= link_to 'Show', employee_path(employee) %></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <%=  "<script>$('#mm-#{employee.id}').click(function() {$('#mm-modal-#{employee.id}').toggleClass('active');}); </script>".html_safe     %>
+                    <%=  "<script>$('#mm-modalc-#{employee.id}').click(function() {$('#mm-modal-#{employee.id}').toggleClass('active');}); </script>".html_safe     %>
+
+                <% end %>
+            <% end %>
+        </tbody>
+
+      </table>
+  <% end %>
+
+
+
+
+</div>
