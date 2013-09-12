@@ -1,4 +1,7 @@
 GumbySlwps::Application.routes.draw do
+  resources :employers
+
+
   resources :employees
 
 

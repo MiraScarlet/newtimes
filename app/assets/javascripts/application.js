@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.bxslider.min.js
+//= require modernizr
 //= require gumby
 //= require ui/gumby.checkbox
 //= require ui/gumby.fixed
@@ -22,4 +22,7 @@
 //= require ui/gumby.tabs
 //= require ui/gumby.toggleswitch
 //= require ui/jquery.validation
+//= require jquery-1.9.1.min.js
+//= require jquery.bxslider.min.js
+//= require dataTables/jquery.dataTables
 //= require_tree .

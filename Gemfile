@@ -26,6 +26,8 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'jquery-rails'
 gem "paperclip"
 gem 'pg_search'
+gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
+gem 'jquery-ui-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

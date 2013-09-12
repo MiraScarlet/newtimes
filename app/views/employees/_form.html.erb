@@ -1,45 +1,81 @@
-<%= form_for(@employee) do |f| %>
-  <% if @employee.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
 
-      <ul>
-      <% @employee.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+  <div class="row" style="border:1px solid #5b9ede; border-top: none;">
+    <ul class="twelve columns" style="padding: 30px 20px 20px 30px">
+      <%= form_for @employee, :html => {:multipart => true} do |form| %>
+          <% if @employee.errors.any? %>
+              <li>
+                <div id="error_explanation" style="margin-top: -20px; margin-bottom: 10px; border-top: 1px solid crimson; border-bottom: 1px solid crimson; margin-right: 52px">
+                  <h4 style="color: red"><%= pluralize(@employee.errors.count, "error") %> prohibited this employee record from being saved:</h4>
+
+                  <ul>
+                    <% @employee.errors.full_messages.each do |msg| %>
+                        <li><%= msg %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              </li>
+          <% end %>
+          <li class="prepend field">
+            <%= form.label :first_name, :class => 'three columns adjoined' %>
+            <%= form.text_field :name, :class => 'xwide text input', :placeholder => 'First name' %>
+          </li>
+          <li class="prepend field">
+            <%= form.label :last_name, :class => 'three columns adjoined' %>
+            <%= form.text_field :last_name, :class => 'xwide text input', :placeholder => 'Last name' %>
+          </li>
+          <li class="prepend field">
+            <div class="four columns">
+              <%= form.label :gender, :class => 'four columns adjoined' %>
+              <div class="picker">
+                <%= form.select :gender, [['Male', 'Male'], ['Female', 'Female']] %>
+              </div>
+            </div>
+            <div class="four columns">
+              <%= form.label :shift, :class => 'four columns adjoined' %>
+              <div class="picker">
+                <%= form.select :shift, [['Morning', 'Morning'], ['Afternoon', 'Afternoon'], ['Night', 'Night'], ['Custom', 'Custom']] %>
+              </div>
+            </div>
+            <div class="four columns">
+              <%= form.label :rate_of_pay, :class => 'five columns adjoined' %>
+              <%= form.text_field :rate_of_pay, :class => 'small text input', :placeholder => 'Per hour', :style => 'width:42%' %>
+            </div>
+
+          </li>
+          <li class="prepend field">
+            <%= form.label :email, :class => 'three columns adjoined' %>
+            <%= form.text_field :email, :class => 'xwide text input', :placeholder => 'Email address' %>
+          </li>
+          <li class="prepend field">
+            <%= form.label :address, :class => 'three columns adjoined' %>
+            <%= form.text_field :address, :class => 'xwide text input', :placeholder => 'Complete address' %>
+          </li>
+          <li class="prepend field">
+            <%= form.label :phone, :class => 'three columns adjoined' %>
+            <%= form.text_field :phone, :class => 'xwide text input', :placeholder => 'Contact number' %>
+          </li>
+          <li class="prepend field">
+            <%= form.label :job_details, :class => 'three columns adjoined' %>
+            <%= form.text_field :job_details, :class => 'xwide text input', :placeholder => 'Job Details' %>
+          </li>
+          <li class="prepend field">
+
+
+          </li>
+          <li class="prepend field">
+            <%= form.label :message, :class => 'three columns adjoined' %>
+            <%= form.text_field :message, :class => 'xwide text input', :placeholder => 'Message' %>
+          </li>
+          <li class="append field">
+            <%= form.label :resume, :class => 'three columns adjoined' %>
+            <%= form.file_field :profile, :style => 'margin-top: 5px' %>
+          </li>
+
+          <div class="medium btn primary"><%= form.submit %></div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    </ul>
   </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_field :address %>
-  </div>
-  <div class="field">
-    <%= f.label :phone %><br />
-    <%= f.text_field :phone %>
-  </div>
-  <div class="field">
-    <%= f.label :job_details %><br />
-    <%= f.text_field :job_details %>
-  </div>
-  <div class="field">
-    <%= f.label :shift %><br />
-    <%= f.text_field :shift %>
-  </div>
-  <div class="field">
-    <%= f.label :message %><br />
-    <%= f.text_field :message %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+
+
+

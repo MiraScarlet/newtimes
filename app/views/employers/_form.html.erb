@@ -1,0 +1,26 @@
+<div class="row" style="border:1px solid #5b9ede; border-top: none">
+  <ul class="twelve columns" style="padding: 30px 20px 20px 30px">
+    <%= form_for @employer, :html => {:multipart => true} do |form| %>
+        <% if @employer.errors.any? %>
+            <li>
+              <div id="error_explanation" style="margin-top: -20px; margin-bottom: 10px; border-top: 1px solid crimson; border-bottom: 1px solid crimson; margin-right: 52px">
+                <h2><%= pluralize(@employer.errors.count, "error") %> prohibited this employer from being saved:</h2>
+
+                <ul>
+                  <% @employer.errors.full_messages.each do |msg| %>
+                      <li><%= msg %></li>
+                  <% end %>
+                </ul>
+              </div>
+            </li>
+        <% end %>
+        <li class="prepend field">
+          <%= form.label :name, :class => 'three columns adjoined' %>
+          <%= form.text_field :name, :class => 'xwide text input', :placeholder => 'First name' %>
+        </li>
+        <li style="text-align: center">
+          <div class="medium btn primary"><%= form.submit %></div>
+        </li>
+    <% end %>
+  </ul>
+</div>

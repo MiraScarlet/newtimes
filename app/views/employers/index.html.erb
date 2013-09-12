@@ -1,0 +1,52 @@
+<div class="row">
+  <h2 style="text-align: center">Showing All Employers <div class="small primary btn" style="float: right"><a href="#" id="md1"><i class="icon-user-add"></i> New Employee</a></div></h2>
+  <div class="drawer" id="mydrawer1" style="background-color: #fff; box-shadow: none;">
+    <div class="row" style="border:1px solid #5b9ede;">
+      <h3 style="text-align: center; border-bottom: 1px solid #c0c0c0">New Employee Record</h3>
+      <ul class="twelve columns" style="padding: 30px 20px 20px 30px">
+        <%= form_for @employer, :html => {:multipart => true} do |form| %>
+            <li class="prepend field">
+              <%= form.label :name, :class => 'three columns adjoined' %>
+              <%= form.text_field :name, :class => 'xwide text input', :placeholder => 'First name' %>
+            </li>
+            <li style="text-align: center">
+              <div class="medium btn primary"><%= form.submit %></div>
+            </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <table id="employees-all">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Edit</th>
+      <th>Show</th>
+      <th>Delete</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @employers.each do |employer| %>
+        <tr>
+          <td><%= employer.name %></td>
+          <td><%= link_to "<i class='icon-pencil'></i>".html_safe, edit_employer_path(employer) %></td>
+          <td><%= link_to "<i class='icon-right-circled'></i>".html_safe, employer %></td>
+          <td><%= link_to "<i class='icon-trash'></i>".html_safe, employer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+    <% end %>
+    </table>
+  </tbody>
+
+
+  <br />
+
+  <%= link_to 'New Employer', new_employer_path %>
+
+</div>
+
+<script>
+    $('#md1').click(function() {
+        $('#mydrawer1').toggleClass('active');
+    });
+</script>

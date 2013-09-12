@@ -1,31 +1,12 @@
-<div class="container" style="background-color: #233441; color: #fff; margin-top: -20px">
-  <div class="row" style="padding: 20px 0 0px 0">
-    <ul class="seven columns">
-      <%= form_tag results_query_path, :class => '', :style => '', :method => 'get' do %>
-          <li class="append field">
-            <%= text_field_tag :query, params[:query], :class => 'xwide search input', :placeholder=>"Search"  %>
-            <div class="medium primary btn">
-              <button type="submit" style="margin-top: 1px">
-                <i class="icon-search"></i>
-              </button>
-            </div>
-          </li>
-
-      <% end %>
-    </ul>
-    <div class="two columns"></div>
-    <div class="three columns">
-      <div class="medium primary btn"><a href="#" id="md1"><i class="icon-user-add"></i> New Employee</a></div>
-    </div>
-
-  </div>
 
 
 
 
 
 
-</div>
+
+
+
 <% unless  @employee_search.blank?  %>
     <div class="row">
       <h2 style="text-align: center">Search results</h2>
@@ -91,67 +72,148 @@
 <% end %>
 
 
-<div class="row">
-  <h2 style="text-align: center">Listing all employees</h2>
-  <div class="row table-head table-head-rounded-left table-head-rounded-right" style="background-color: #3085d6; color: #fff;">
-    <div class="two columns">First Name</div>
-    <div class="two columns">Last Name</div>
-    <div class="one columns">Gender</div>
-    <div class="two columns">Job Details</div>
-    <div class="two columns">Shift</div>
-    <div class="two columns">Location</div>
-    <div class="one columns"></div>
+
+
+
+<div class="row" style="margin-top: 25px">
+  <h2 style="text-align: center;">Showing All Employees <div class="small primary btn" style="float: right"><a href="#" id="md1"><i class="icon-user-add"></i> New Employee</a></div></h2>
+  <div class="drawer" id="mydrawer1" style="background-color: #fff; box-shadow: none;">
+    <div class="row" style="border:1px solid #5b9ede;">
+      <h3 style="text-align: center; border-bottom: 1px solid #c0c0c0">New Employee Record</h3>
+      <ul class="twelve columns" style="padding: 30px 20px 20px 30px">
+        <%= form_for @employee, :url => '/contact', :html => {:multipart => true} do |form| %>
+            <li class="prepend field">
+              <%= form.label :first_name, :class => 'three columns adjoined' %>
+              <%= form.text_field :name, :class => 'xwide text input', :placeholder => 'First name' %>
+            </li>
+            <li class="prepend field">
+              <%= form.label :last_name, :class => 'three columns adjoined' %>
+              <%= form.text_field :last_name, :class => 'xwide text input', :placeholder => 'Last name' %>
+            </li>
+            <li class="prepend field">
+              <div class="four columns">
+                <%= form.label :gender, :class => 'four columns adjoined' %>
+                <div class="picker">
+                  <%= form.select :gender, [['Male', 'Male'], ['Female', 'Female']] %>
+                </div>
+              </div>
+              <div class="four columns">
+                <%= form.label :shift, :class => 'four columns adjoined' %>
+                <div class="picker">
+                  <%= form.select :shift, [['Morning', 'Morning'], ['Afternoon', 'Afternoon'], ['Night', 'Night'], ['Custom', 'Custom']] %>
+                </div>
+              </div>
+              <div class="four columns">
+                <%= form.label :rate_of_pay, :class => 'five columns adjoined' %>
+                <%= form.text_field :rate_of_pay, :class => 'small text input', :placeholder => 'Per hour', :style => 'width:42%' %>
+              </div>
+
+            </li>
+            <li class="prepend field">
+              <%= form.label :email, :class => 'three columns adjoined' %>
+              <%= form.text_field :email, :class => 'xwide text input', :placeholder => 'Email address' %>
+            </li>
+            <li class="prepend field">
+              <%= form.label :address, :class => 'three columns adjoined' %>
+              <%= form.text_field :address, :class => 'xwide text input', :placeholder => 'Complete address' %>
+            </li>
+            <li class="prepend field">
+              <%= form.label :phone, :class => 'three columns adjoined' %>
+              <%= form.text_field :phone, :class => 'xwide text input', :placeholder => 'Contact number' %>
+            </li>
+            <li class="prepend field">
+              <%= form.label :job_details, :class => 'three columns adjoined' %>
+              <%= form.text_field :job_details, :class => 'xwide text input', :placeholder => 'Job Details' %>
+            </li>
+            <li class="prepend field">
+
+
+            </li>
+            <li class="prepend field">
+              <%= form.label :message, :class => 'three columns adjoined' %>
+              <%= form.text_field :message, :class => 'xwide text input', :placeholder => 'Message' %>
+            </li>
+            <li class="append field">
+              <%= form.label :resume, :class => 'three columns adjoined' %>
+              <%= form.file_field :profile, :style => 'margin-top: 5px' %>
+            </li>
+
+            <li style="text-align: center"><div class="medium btn primary"><%= form.submit %></div></li>
+        <% end %>
+
+      </ul>
+    </div>
   </div>
-</div>
 
-<div class="row">
+  <table class="display" id="employees-all" style="margin-top: 25px">
+    <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Gender</th>
+      <th>Job Details</th>
+      <th>Shift</th>
+      <th>Location</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
     <% @employees.each_with_index do |employee, index| %>
-      <div class="row">
-        <div class="two columns"><%= employee.name %></div>
-        <div class="two columns"><%= employee.last_name %></div>
-        <div class="one columns"><%= employee.gender %></div>
-        <div class="two columns"><%= employee.job_details %></div>
-        <div class="two columns"><%= employee.shift %></div>
-        <div class="two columns"><%= employee.address %></div>
-        <div class="one columns" id = <%="md-#{index}".html_safe %> ><i class="icon-down-circled"></i></div>
-      </div>
-      <div class="drawer" style=" margin-bottom:5px; background-color: #ffffff; box-shadow: none;" id=<%= "mydrawer-md-#{index}" %>  >
-        <div class="row" style="padding:10px;border:1px solid #eee; border-radius:5px;">
-          <div class="row">
-            <div class="two columns"><h5>Name</h5></div>
-            <div class="two columns"><h5><%= employee.name %></h5></div>
-            <div class="two columns"><h5><%= employee.last_name %></h5></div>
-            <div class="two columns"><h5>Gender: <%= employee.gender %></h5></div>
-            <div class="two columns"><h5>Shift: <%= employee.shift %></h5></div>
-            <div class="two columns"><h5>DNR: <%= employee.dnr %></h5></div>
-          </div>
-          <div class="row">
-            <div class="three columns"><h5>Email: <%= employee.email %></h5></div>
-            <div class="three columns"><h5>Phone: <%= employee.phone %></h5></div>
-            <div class="three columns"><h5>Job Details: <%= employee.job_details %></h5></div>
-            <div class="three columns"><h5>Rate of Pay: <%= employee.gender %></h5></div>
-          </div>
-          <div class="row">
-            <div class="six columns">
-              <h5>Message</h5>
-              <%= employee.message %>
-            </div>
-            <div class="four columns">
-              <h5>Address</h5>
-              <%= employee.address %>
-            </div>
-            <div class="two columns">
-              <h5>Resume: <%= employee.profile %></h5>
-              <div class="small btn warning"><%= link_to 'Edit', edit_employee_path(employee) %></div>
-              <div class="small btn primary"><%= link_to 'Show', employee_path(employee) %></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <%=  "<script>$('#md-#{index}').click(function() {$('#mydrawer-md-#{index}').toggleClass('active');}); </script>".html_safe     %>
-    <% end %>
-</div>
+        <tr>
+          <td ><%= employee.name %></td>
+          <td ><%= employee.last_name %></td>
+          <td ><%= employee.gender %></td>
+          <td ><%= employee.job_details %></td>
+          <td ><%= employee.shift %></td>
+          <td ><%= employee.address %></td>
+          <td><i class="icon-info-circled switch" id = <%="mm-#{index}".html_safe %> ></i> <%= link_to employee_path(employee) do %><i class="icon-right-circled"></i><% end %></td>
+        </tr>
+        <div class="modal" id = <%="mm-modal-#{index}".html_safe %> >
+          <div class="content">
+            <a class="close switch" id=<%="mm-modalc-#{index}".html_safe %> ><i class="icon-cancel" ></i></a>
 
+            <div class="row" style="margin-top: 20px">
+              <div class="row" style="padding: 5px 10px 0px 10px">
+                <div class="two columns"><h6 style="font-weight: bold"><%= employee.name %></h6></div>
+                <div class="two columns"><h6 style="font-weight: bold; word-wrap:break-word;"><%= employee.last_name %></h6></div>
+                <div class="two columns"><h6 style="font-weight: bold">Gender:</h6><p><%= employee.gender %></p></div>
+                <div class="two columns"><h6 style="font-weight: bold">Job_D:</h6><p style="word-wrap:break-word;"><%= employee.job_details %></p></div>
+                <div class="two columns"><h6 style="font-weight: bold">Shift: <p><%= employee.shift %></p></h6></div>
+                <div class="two columns"><h6 style="font-weight: bold">Location: <p><%= employee.address %></p></h6></div>
+
+              </div>
+              <div class="row" style="padding: 5px 10px 0px 10px">
+                <div class="three columns"><h6 style="font-weight: bold">Email: <p><%= employee.email %></p></h6></div>
+                <div class="three columns"><h6 style="font-weight: bold">Phone: <p><%= employee.phone %></p></h6></div>
+                <div class="three columns"><h6 style="font-weight: bold">DNR: <p><%= employee.dnr %></p></h6></div>
+                <div class="three columns"><h6 style="font-weight: bold">Rate of Pay: <p><%= employee.gender %></p></h6></div>
+              </div>
+              <div class="row" style="padding: 5px 10px 5px 10px; margin-bottom: 10px">
+                <div class="five columns">
+                  <h6 style="font-weight: bold">Message</h6>
+                  <p style="word-wrap:break-word;"><%= employee.message %><p>
+                </div>
+                <div class="four columns">
+                  <h6 style="font-weight: bold">Address</h6>
+                  <p><%= employee.address %></p>
+                </div>
+                <div class="three columns">
+                  <h6 style="font-weight: bold">Resume: <p><%= employee.profile_file_name  %></p></h6>
+                  <div class="small btn warning"><%= link_to 'Edit', edit_employee_path(employee) %></div>
+                  <div class="small btn primary"><%= link_to 'Show', employee_path(employee) %></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <%=  "<script>$('#mm-#{index}').click(function() {$('#mm-modal-#{index}').toggleClass('active');}); </script>".html_safe     %>
+        <%=  "<script>$('#mm-modalc-#{index}').click(function() {$('#mm-modal-#{index}').toggleClass('active');}); </script>".html_safe     %>
+    <% end %>
+  </table>
+
+</div>
 
 
 <script>

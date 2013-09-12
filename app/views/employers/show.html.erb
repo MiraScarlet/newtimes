@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <div class="twelve columns">
+    <section class="pill tabs">
+      <ul class="tab-nav">
+        <li class="active"><a href="#">Employer Details</a></li>
+        <li><a href="#">Job History</a></li>
+      </ul>
+      <div class="tab-content active">
+        <div class="row applewrap">
+          <div class="row" style="border-bottom: 2px solid #e5e5e5; padding: 15px 25px 15px 25px">
+            <div class="twelve columns">
+              <h3><%=@employer.name %></h3>
+              <p style="color: #c0c0c0; margin-bottom: 0px">First & Last Name</p>
+            </div>
+          </div>
+
+
+          <div class="row" style="padding: 15px 25px 15px 25px">
+            <div class="four columns">
+
+            </div>
+            <div class="four columns">
+
+              <div class="row" style="margin-top: 10px">
+                <div class="six columns">
+                  <div class="medium default btn" style="border-radius: 4px"><%= link_to edit_employer_path(@employer) do %> <i class="icon-pencil"></i> Edit<% end %></div>
+                </div>
+                <div class="six columns">
+                  <div class="medium warning btn" style="border-radius: 4px; float: right"><a href="#"><i class="icon-trash"></i> Delete</a></div>
+                </div>
+              </div>
+
+
+
+
+            </div>
+            <div class="four columns" >
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-content">
+        <p>Morbi tincidunt, dui sit amet facilisis feugiat...</p>
+      </div>
+    </section>
+  </div>
+</div>
+
+
+

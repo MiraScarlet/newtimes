@@ -22,18 +22,19 @@
         <%= image_tag "/assets/newtimes_logo.png"%>
       </a>
     </h1>
-    <ul class="eight columns" >
-      <li><a href="/home"><i class="icon-home"></i> Home</a></li>
-      <li><a href="/job_seekers"><i class="icon-search"></i> Job Seekers</a></li>
-      <li><a href="/employers"><i class="icon-flag"></i> Employers</a></li>
-      <li><a href="/about_us"><i class="icon-droplet"></i> About Us</a></li>
-      <li><a href="/contact_us"><i class="icon-phone"></i> Contact Us</a></li>
+
+    <ul class="eight columns" style="margin: 0 auto">
+      <li><a href="/home"> Home</a></li>
+      <li><a href="/job_seekers"> Job Seekers</a></li>
+      <li><a href="/employers"> Employers</a></li>
+      <li><a href="/about_us"> About Us</a></li>
+      <li><a href="/contact_us"> Contact Us</a></li>
       <% if current_user %>
           <li>
-            <a><%= current_user.email %> <i class="icon-down-circled"></i></a>
+            <a><%= current_user.email %></a>
             <div class="dropdown">
               <ul>
-                <li style="color: white"><a><i class="icon-user"></i> <%= current_user.email %></a></li>
+                <li style="color: white"><a> <%= current_user.email %></a></li>
                 <li>
 
                     <%= link_to logout_path do %>
@@ -49,13 +50,11 @@
       <% else %>
           <li>
             <%= link_to signup_path do %>
-                <i class="icon-user-add"></i>
                 Sign Up
             <% end %>
           </li>
           <li>
             <%= link_to login_path do %>
-                <i class="icon-login"></i>
                 Log In
             <% end %>
             </li>
@@ -63,10 +62,45 @@
 
     </ul>
 </div>
-	
+<% if current_user %>
+    <div class="container" style="background-color: #233441; color: #fff; margin-top: -20px">
+      <div class="row" style="padding: 14px 0 0px 0">
+        <ul class="seven columns" style="margin-bottom: -10px">
+          <%= form_tag results_query_path, :class => '', :style => '', :method => 'get' do %>
+              <li class="append field">
+                <%= text_field_tag :query, params[:query], :class => 'xwide search input', :placeholder=>"Search"  %>
+                <div class="medium primary btn">
+                  <button type="submit" style="margin-top: 1px">
+                    <i class="icon-search"></i>
+                  </button>
+                </div>
+              </li>
+
+          <% end %>
+        </ul>
+        <div class="one columns">
+
+        </div>
+        <div class="two columns">
+          <div class="medium default btn" style="border-radius: 4px; float: right">
+            <%= link_to 'Employers', employers_path %>
+          </div>
+        </div>
+        <div class="two columns">
+          <div class="medium default btn" style="border-radius: 4px; float: right">
+            <%= link_to 'Employees', employees_path %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+<% end %>
 
 	
 <%= yield %>
+
+
+
 <div class=" navbar" gumby-fixed="top" id="nav3" style=" background-color:#fff; margin-bottom: 0px; margin-top: 25px; border-top:1px solid #eee;">
   <div class="row">
     <a class="toggle" gumby-trigger="#nav3 &gt; .row &gt; ul" href="#"><i class="icon-menu"></i></a>
