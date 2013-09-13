@@ -197,3 +197,7 @@ table.rounded > tbody:first-child tr:first-child td {
 .paginate_disabled_previous {
     float: none;
 }
+
+.paginate_enabled_next {
+    margin-left: -40px;
+}
