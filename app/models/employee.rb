@@ -1,4 +1,6 @@
 class Employee < ActiveRecord::Base
+  has_many :jobs
+  has_many :employers, through: :jobs
 
   attr_accessible :address, :email, :job_details, :message, :name, :phone, :shift, :profile, :last_name, :gender, :rate_of_pay
   validates_presence_of :name, :last_name, :phone, :job_details, :message, :profile_file_name
@@ -17,6 +19,9 @@ class Employee < ActiveRecord::Base
 
 
   has_attached_file :profile
+
+
+
 
   include PgSearch
   multisearchable :against => [:name, :last_name, :email, :job_details, :message, :shift, :phone, :gender, :rate_of_pay]

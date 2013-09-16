@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  employee_id: 1
+  employer_id: 1
+  customer: MyString
+  contractor: MyString
+  week_of: 2013-09-16 14:12:54
+  shift: MyString
+
+two:
+  employee_id: 1
+  employer_id: 1
+  customer: MyString
+  contractor: MyString
+  week_of: 2013-09-16 14:12:54
+  shift: MyString

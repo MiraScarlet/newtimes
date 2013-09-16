@@ -41,13 +41,111 @@
             </div>
           </div>
         </div>
+        <div class="row" style="margin-top: 50px">
+          <h2 style="text-align: center">Recent Jobs <div class="small primary btn" style="float: right"><a id="md1"><i class="icon-user-add"></i> New Job </a></div></h2>
+          <div class="drawer" id="mydrawer1" style="background-color: #fff; box-shadow: none;">
+            <div class="row" style="border:1px solid #5b9ede;">
+              <h3 style="text-align: center; border-bottom: 1px solid #c0c0c0">New Job Placement</h3>
+              <ul class="twelve columns" style="padding: 30px 20px 20px 30px">
+                <%= form_for @employer.jobs.build, :html => {:multipart => true}, :id => 'myform' do |form| %>
+                    <li class="prepend field">
+                      <%= form.label :employee, :class => 'three columns adjoined' %>
+                      <%= form.collection_select :employee_id, Employee.all, :id, :name, {:prompt => "Select an Employee"}, {:class => 'picker', :id => 'employee1'} %>
+                    </li>
+                    <li class="prepend field">
+                      <%= form.label :week_of, :class => 'three columns adjoined' %>
+                      <%= form.date_select :week_of, {:class => 'picker', :id => 'week1'} %>
+                    </li>
+                    <li><%=  form.hidden_field :employer_id, :value => @employer.id %></li>
+                    <li style="text-align: center">
+                      <div class="medium btn primary"><%= form.submit %></div>
+                    </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+          <table>
+            <thead>
+            <tr>
+              <th>Contractor</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Shift</th>
+              <th>Rate of Pay</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @employer.jobs.last(5).reverse.each do |job| %>
+                <tr>
+                  <td><%= job.contractor %><%= job.contractor_lname %></td>
+                  <td><%= job.week_of %></td>
+                  <td><%= job.week_of_end %></td>
+                  <td><%= job.shift %></td>
+                  <td><%= job.rate_of_pay %></td>
+                  <td>
+                    <%= link_to "<i class='icon-pencil'></i>".html_safe %>
+                    <%= link_to "<i class='icon-right-circled'></i>".html_safe %>
+                    <%= link_to "<i class='icon-trash'></i>".html_safe %>
+
+                  </td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+
       </div>
+
+
+
+
+
       <div class="tab-content">
-        <p>Morbi tincidunt, dui sit amet facilisis feugiat...</p>
+        <div class="row" style="margin-top: 25px">
+          <h2 style="text-align: center"><%= @employer.name %> - Work History</h2>
+          <table id="employees-all">
+            <thead>
+            <tr>
+              <th>Contractor</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Shift</th>
+              <th>Rate of Pay</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @employer.jobs.each do |job| %>
+                <tr>
+                  <td><%= link_to job.contractor %><%= job.contractor_lname %></td>
+                  <td><%= job.week_of %></td>
+                  <td><%= job.week_of_end %></td>
+                  <td><%= job.shift %></td>
+                  <td><%= job.rate_of_pay %></td>
+                  <td>
+                    <%= link_to "<i class='icon-pencil'></i>".html_safe %>
+                    <%= link_to "<i class='icon-right-circled'></i>".html_safe %>
+                    <%= link_to "<i class='icon-trash'></i>".html_safe %>
+                  </td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
       </div>
+
+
     </section>
   </div>
 </div>
+
+<script>
+    $('#md1').click(function() {
+        $('#mydrawer1').toggleClass('active');
+    });
+</script>
+
 
 
 
