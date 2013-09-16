@@ -118,7 +118,7 @@
             <tbody>
             <% @employer.jobs.each do |job| %>
                 <tr>
-                  <td><%= link_to job.contractor %><%= job.contractor_lname %></td>
+                  <td><%= job.contractor %><%= job.contractor_lname %></td>
                   <td><%= job.week_of %></td>
                   <td><%= job.week_of_end %></td>
                   <td><%= job.shift %></td>
