@@ -31,7 +31,7 @@
       <li><a href="/contact_us"> Contact Us</a></li>
       <% if current_user %>
           <li>
-            <a><%= current_user.email %></a>
+            <a><%= current_user.email %><i class="icon-down-circled"></i> </a>
             <div class="dropdown">
               <ul>
                 <li style="color: white"><a> <%= current_user.email %></a></li>
@@ -63,7 +63,7 @@
     </ul>
 </div>
 <% if current_user %>
-    <div class="container" style="background-color: #233441; color: #fff; margin-top: -20px">
+    <div class="container" style="background-color: #233441; color: #fff; margin-top: -20px; margin-bottom: 20px">
       <div class="row" style="padding: 14px 0 0px 0">
         <ul class="seven columns" style="margin-bottom: -10px">
           <%= form_tag results_query_path, :class => '', :style => '', :method => 'get' do %>
