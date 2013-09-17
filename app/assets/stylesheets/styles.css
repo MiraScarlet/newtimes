@@ -1,3 +1,17 @@
+
+.btn.dark, .skiplink.dark { background: #233441; border: 1px solid #3085d6; }
+.btn.dark:hover, .skiplink.dark:hover { background: #5b9ede; }
+.btn.dark:active, .skiplink.dark:active { background: #236bb0; }
+
+
+.background-subtle-white {
+    background-image: url("http://www.kule.tw/css/img/patterns/subtle/whitey.png");
+    background-repeat: repeat;
+}
+.custom-box-circle{
+    color: #fff; background-color: #233441; border-radius: 50%; text-align: center; height: 60px; width: 60px;
+}
+
 .justified{
     text-align: justify;
     text-justify: inter-word;
