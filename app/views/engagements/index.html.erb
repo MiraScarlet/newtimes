@@ -1,0 +1,39 @@
+<h1>Listing engagements</h1>
+
+<table>
+  <tr>
+    <th>Contractor</th>
+    <th>Customer</th>
+    <th>Shift</th>
+    <th>Rate of pay</th>
+    <th>Contractor last name</th>
+    <th>Start week</th>
+    <th>End week</th>
+    <th>Contractor</th>
+    <th>Customer</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @engagements.each do |engagement| %>
+  <tr>
+    <td><%= engagement.contractor %></td>
+    <td><%= engagement.customer %></td>
+    <td><%= engagement.shift %></td>
+    <td><%= engagement.rate_of_pay %></td>
+    <td><%= engagement.contractor_last_name %></td>
+    <td><%= engagement.start_week %></td>
+    <td><%= engagement.end_week %></td>
+    <td><%= engagement.contractor_id %></td>
+    <td><%= engagement.customer_id %></td>
+    <td><%= link_to 'Show', engagement %></td>
+    <td><%= link_to 'Edit', edit_engagement_path(engagement) %></td>
+    <td><%= link_to 'Destroy', engagement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Engagement', new_engagement_path %>

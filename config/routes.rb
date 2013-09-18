@@ -1,4 +1,7 @@
 GumbySlwps::Application.routes.draw do
+  resources :engagements
+
+
   resources :employers
 
 
@@ -28,6 +31,7 @@ GumbySlwps::Application.routes.draw do
   resources :sessions
   resources :password_resets
   resources :jobs
+  delete 'exit', to: 'jobs#destroy', as: :fire
 
 
   # The priority is based upon order of creation:

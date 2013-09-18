@@ -1,0 +1,53 @@
+<%= form_for(@engagement) do |f| %>
+  <% if @engagement.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@engagement.errors.count, "error") %> prohibited this engagement from being saved:</h2>
+
+      <ul>
+      <% @engagement.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :contractor %><br />
+    <%= f.text_field :contractor %>
+  </div>
+  <div class="field">
+    <%= f.label :customer %><br />
+    <%= f.text_field :customer %>
+  </div>
+  <div class="field">
+    <%= f.label :shift %><br />
+    <%= f.text_field :shift %>
+  </div>
+  <div class="field">
+    <%= f.label :rate_of_pay %><br />
+    <%= f.text_field :rate_of_pay %>
+  </div>
+  <div class="field">
+    <%= f.label :contractor_last_name %><br />
+    <%= f.text_field :contractor_last_name %>
+  </div>
+  <div class="field">
+    <%= f.label :start_week %><br />
+    <%= f.date_select :start_week %>
+  </div>
+  <div class="field">
+    <%= f.label :end_week %><br />
+    <%= f.date_select :end_week %>
+  </div>
+  <div class="field">
+    <%= f.label :contractor_id %><br />
+    <%= f.number_field :contractor_id %>
+  </div>
+  <div class="field">
+    <%= f.label :customer_id %><br />
+    <%= f.number_field :customer_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

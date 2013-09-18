@@ -2,6 +2,9 @@ class Employee < ActiveRecord::Base
   has_many :jobs
   has_many :employers, through: :jobs
 
+  has_many :engagements, :foreign_key => 'contractor_id', :dependent => :destroy
+  has_many :customers, :through => :engagements
+
   attr_accessible :address, :email, :job_details, :message, :name, :phone, :shift, :profile, :last_name, :gender, :rate_of_pay
   validates_presence_of :name, :last_name, :phone, :job_details, :message, :profile_file_name
   validates_length_of :name, :minimum => 3, :too_short => "please enter at least 3 character"

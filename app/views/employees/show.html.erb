@@ -77,63 +77,50 @@
         </div>
 
         <div class="row" style="margin-top: 50px">
-          <h2 style="text-align: center;">Recent Jobs <div class="small primary btn" style="float: right"><a id="md1"><i class="icon-user-add"></i> New Job Placement </a></div></h2>
-          <div class="drawer" id="mydrawer1" style="background-color: #fff; box-shadow: none;">
-            <div class="row" style="border:1px solid #5b9ede;">
-              <h3 style="text-align: center; border-bottom: 1px solid #c0c0c0">New Job Placement</h3>
-              <ul class="twelve columns" style="padding: 30px 20px 20px 30px">
-                <%= form_for @employee.jobs.build, :html => {:multipart => true}, :id => 'myform' do |form| %>
-                    <li class="prepend field">
-                      <%= form.label :employer, :class => 'three columns adjoined' %>
-                      <%= form.collection_select :employer_id, Employer.all, :id, :name, {:prompt => "Select an Employer"}, {:class => 'picker', :id => 'employer1'} %>
-                    </li>
-                    <li class="prepend field">
-                      <%= form.label :week_of, :class => 'three columns adjoined' %>
-                      <%= form.date_select :week_of, :class => 'picker' %>
-                    </li>
-                    <li><%=  form.hidden_field :employee_id, :value => @employee.id %></li>
-                    <li style="text-align: center">
-                      <div class="medium btn primary"><%= form.submit %></div>
-                    </li>
-                <% end %>
-              </ul>
-            </div>
+          <div class="row">
+            <h2 style="text-align: center;">Recent Jobs <div class="small primary btn" style="float: right"><a id="md1"><i class="icon-user-add"></i> New Job Placement </a></div></h2>
           </div>
 
 
+        </div>
+
+
+        <div class="row">
           <div class="row">
             <table >
               <thead>
-                  <tr>
-                    <th>Employer</th>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Shift</th>
-                    <th>Rate of Pay</th>
-                    <th></th>
-                  </tr>
+              <tr>
+                <th>Employer</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Shift</th>
+                <th>Rate of Pay</th>
+                <th></th>
+              </tr>
               </thead>
               <tbody>
-                <% if @employee.jobs.last.nil? %>
-                <% else %>
-                  <% @employee.jobs.each do |placement, index| %>
-                      <tr>
-                        <td><%= placement.customer %></td>
-                        <td><%= placement.week_of %></td>
-                        <td><%= placement.week_of_end %></td>
-                        <td><%= placement.shift %></td>
-                        <td><%= placement.rate_of_pay %></td>
-                        <td>
-                          <i class="icon-pencil" id = 'mmer-<%=index %>' ></i>
 
-                          <%= link_to "<i class='icon-trash'></i>".html_safe, job_path(:id => placement.id, :method => :delete, :action => :destroy) %>
+              <% @employee.engagements.last(5).reverse.each do |engagement, index| %>
+                <% if @employee.engagements.empty? %>
+
+                <% else %>
+                      <tr>
+                        <td><%= engagement.customer %></td>
+                        <td><%= engagement.start_week %></td>
+                        <td><%= engagement.end_week %></td>
+                        <td><%= engagement.shift %></td>
+                        <td><%= engagement.rate_of_pay %></td>
+                        <td>
+                          <i class="icon-pencil" id =<%="mer-#{index}".html_safe %> ></i>
+
+                          <%= link_to "<i class='icon-trash'></i>".html_safe %>
 
 
                         </td>
                       </tr>
-                      <div class="modal" id = 'mmer-modal-<%=index %>' >
+                      <div class="modal" id =<%="mer-modal-#{index}".html_safe %> >
                         <div class="content">
-                          <a class="close switch" id= 'mmer-modalc-<%=index %>' ><i class="icon-cancel" ></i></a>
+                          <a class="close switch" id=<%="mer-modalc-#{index}".html_safe %> ><i class="icon-cancel" ></i></a>
 
                           <div class="row">
                             <h3 style="text-align: center; border-bottom: 1px solid #333">Edit Job Placement</h3>
@@ -143,10 +130,10 @@
                             <div class="two columns"></div>
                             <div class="nine columns" style="padding-left: 125px">
                               <ul>
-                                <%= form_for placement, :html => {:multipart => true} do |form| %>
+                                <%= form_for (engagement), :html => {:multipart => true} do |form| %>
                                     <li class="prepend field">
                                       <%= form.label :employer, :class => 'three columns adjoined' %>
-                                      <%= form.collection_select :employer_id, Employer.all, :id, :name, {:prompt => "Select an Employer"}, {:class => 'picker', :id => 'employer1'} %>
+                                      <%= form.collection_select :customer_id, Employer.all, :id, :name, {:prompt => "Select an Employer"}, {:class => 'picker', :id => 'employer1'} %>
                                     </li>
                                     <li class="prepend field">
                                       <%= form.label :shift, :class => 'three columns adjoined' %>
@@ -159,15 +146,15 @@
                                       <%= form.text_field :rate_of_pay, :class => 'narrow text input', :placeholder => 'Per hour' %>
                                     </li>
                                     <li class="prepend field">
-                                      <%= form.label :week_of, :class => 'three columns adjoined' %>
-                                      <%= form.date_select :week_of, :class => 'picker' %>
+                                      <%= form.label :start_date, :class => 'three columns adjoined' %>
+                                      <%= form.date_select :start_week, :class => 'picker' %>
                                     </li>
 
                                     <li class="prepend field">
-                                      <%= form.label :week_of_end, :class => 'three columns adjoined' %>
-                                      <%= form.date_select :week_of_end, :class => 'picker' %>
+                                      <%= form.label :end_date, :class => 'three columns adjoined' %>
+                                      <%= form.date_select :end_week, :class => 'picker' %>
                                     </li>
-                                    <li><%=  form.hidden_field :employee_id, :value => @employee.id %></li>
+                                    <li><%=  form.hidden_field :contractor_id, :value => @employee.id %></li>
                                     <li>
                                       <div class="medium btn primary"><%= form.submit 'Update Job' %></div>
                                     </li>
@@ -178,15 +165,45 @@
                           </div>
                         </div>
                       </div>
-                      <%=  "<script>$('#mmer-#{index}').click(function() {$('#mmer-modal-#{index}').toggleClass('active');}); </script>".html_safe     %>
-                      <%=  "<script>$('#mmer-modalc-#{index}').click(function() {$('#mmer-modal-#{index}').toggleClass('active');}); </script>".html_safe     %>
-                  <% end %>
+                      <%=  "<script>$('#mer-#{index}').click(function() {$('#mer-modal-#{index}').toggleClass('active');}); </script>".html_safe     %>
+                      <%=  "<script>$('#mer-modalc-#{index}').click(function() {$('#mer-modal-#{index}').toggleClass('active');}); </script>".html_safe     %>
                 <% end %>
+
+              <% end %>
+
               </tbody>
             </table>
           </div>
-
         </div>
+
+
+
+
+        <div class="modal" id="mymodal1" style="background-color: #fff; box-shadow: none;">
+          <div class="content">
+            <a class="close switch" id="mymodal1-close"><i class="icon-cancel" ></i></a>
+            <div class="row" style="border:1px solid #5b9ede;">
+              <h3 style="text-align: center; border-bottom: 1px solid #c0c0c0">New Job Placement</h3>
+              <ul class="twelve columns" style="padding: 30px 20px 20px 30px">
+                <%= form_for @employee.engagements.build(:contractor_id => @employee.id) do |form| %>
+                    <li class="prepend field">
+                      <%= form.label :employer, :class => 'three columns adjoined' %>
+                      <%= form.collection_select :customer_id, Employer.all, :id, :name, {:prompt => "Select an Employer"}, {:class => 'picker', :id => 'employer1'} %>
+                    </li>
+                    <li class="prepend field">
+                      <%= form.label :start_date, :class => 'three columns adjoined' %>
+                      <%= form.date_select :start_week, :class => 'picker' %>
+                    </li>
+                    <li><%=  form.hidden_field :contractor_id, :value => @employee.id %></li>
+                    <li style="text-align: center">
+                      <div class="medium btn primary"><%= form.submit %></div>
+                    </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+
 
       </div>
 
@@ -233,6 +250,8 @@
     $('#md1').click(function() {
         $('#mydrawer1').toggleClass('active');
     });
+    $('#md1').click(function() {$('#mymodal1').toggleClass('active');});
+    $('#mymodal1-close').click(function() {$('#mymodal1').toggleClass('active');});
 </script>
 
 
