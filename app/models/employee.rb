@@ -1,6 +1,5 @@
 class Employee < ActiveRecord::Base
-  has_many :jobs
-  has_many :employers, through: :jobs
+
 
   has_many :engagements, :foreign_key => 'contractor_id', :dependent => :destroy
   has_many :customers, :through => :engagements

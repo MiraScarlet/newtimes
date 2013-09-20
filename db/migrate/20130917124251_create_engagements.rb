@@ -1,8 +1,8 @@
 class CreateEngagements < ActiveRecord::Migration
   def change
     create_table :engagements do |t|
-      t.string :contractor
-      t.string :customer
+      t.string :contractor_name
+      t.string :customer_name
       t.string :shift
       t.string :rate_of_pay
       t.string :contractor_last_name
