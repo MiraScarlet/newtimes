@@ -16,7 +16,27 @@
         <% end %>
         <li class="prepend field">
           <%= form.label :name, :class => 'three columns adjoined' %>
-          <%= form.text_field :name, :class => 'xwide text input', :placeholder => 'First name' %>
+          <%= form.text_field :name, :class => 'xwide text input', :placeholder => 'Name' %>
+        </li>
+        <li class="prepend field">
+          <%= form.label :contact_person, :class => 'three columns adjoined' %>
+          <%= form.text_field :contact_person, :class => 'xwide text input', :placeholder => 'Designated contact person' %>
+        </li>
+        <li class="prepend field">
+          <%= form.label :email, :class => 'three columns adjoined' %>
+          <%= form.text_field :email, :class => 'xwide text input', :placeholder => 'Email' %>
+        </li>
+        <li class="prepend field">
+          <%= form.label :phone, :class => 'three columns adjoined' %>
+          <%= form.text_field :phone, :class => 'xwide text input', :placeholder => 'Phone' %>
+        </li>
+        <li class="prepend field">
+          <%= form.label :address, :class => 'three columns adjoined' %>
+          <%= form.text_field :address, :class => 'xwide text input', :placeholder => 'Address' %>
+        </li>
+        <li class="prepend field">
+          <%= form.label :location, :class => 'three columns adjoined' %>
+          <%= form.text_field :location, :class => 'xwide text input', :placeholder => 'Location' %>
         </li>
         <li style="text-align: center">
           <div class="medium btn primary"><%= form.submit %></div>

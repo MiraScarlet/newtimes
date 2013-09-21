@@ -23,10 +23,10 @@
                     <% employer = Employer.find(id) %>
                     <tr>
                       <td><%= employer.name %></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                      <td><%= employer.contact_person %></td>
+                      <td><%= employer.location %></td>
+                      <td><%= employer.phone %></td>
+                      <td><%= employer.email %></td>
                       <td></td>
                       <td>
                         <%= link_to "<i class='icon-pencil'></i>".html_safe, edit_employer_path(employer) %>

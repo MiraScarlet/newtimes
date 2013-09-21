@@ -10,17 +10,46 @@
       <div class="tab-content active">
         <div class="row applewrap">
           <div class="row" style="border-bottom: 2px solid #e5e5e5; padding: 15px 25px 15px 25px">
-            <div class="twelve columns">
-              <h3><%=@employer.name %></h3>
-              <p style="color: #c0c0c0; margin-bottom: 0px">First & Last Name</p>
+            <div class="six columns">
+              <h3 style="min-height: 50px"><%=@employer.name %></h3>
+              <p style="color: #c0c0c0; margin-bottom: 0px">Name</p>
             </div>
+            <div class="four columns">
+              <h5 style="min-height: 50px"><%=@employer.contact_person %></h5>
+              <p style="color: #c0c0c0; margin-bottom: 0px">Designated Contact Person</p>
+            </div>
+            <div class="two columns">
+              <h3 style="min-height: 50px"><%=@employer.location %></h3>
+              <p style="color: #c0c0c0; margin-bottom: 0px">Location</p>
+            </div>
+          </div>
+
+          
+          <div class="row" style="padding: 15px 25px 15px 25px">
+            <div class="two columns">
+              <h5 style="min-height: 30px"> <%=@employer.email %></h5>
+              <p style="color: #c0c0c0; margin-bottom: 0px">Email</p>
+            </div>
+            <div class="two columns">
+              <h5 style="min-height: 30px"> <%=@employer.phone %></h5>
+              <p style="color: #c0c0c0; margin-bottom: 0px">Phone No</p>
+            </div>
+            <div class="eight columns">
+              <h5 style="min-height: 30px"><%=@employer.address %></h5>
+              <p style="color: #c0c0c0; margin-bottom: 0px">Address</p>
+            </div>
+
           </div>
 
 
           <div class="row" style="padding: 15px 25px 15px 25px">
+            
+            
             <div class="four columns">
 
             </div>
+            
+            
             <div class="four columns">
 
               <div class="row" style="margin-top: 10px">
@@ -31,15 +60,16 @@
                   <div class="medium warning btn" style="border-radius: 4px; float: right"><a href="#"><i class="icon-trash"></i> Delete</a></div>
                 </div>
               </div>
-
-
-
-
             </div>
+            
+            
             <div class="four columns" >
 
             </div>
           </div>
+          
+          
+          
         </div>
         
         

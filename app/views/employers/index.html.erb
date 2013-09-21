@@ -2,12 +2,32 @@
   <h2 style="text-align: center">Showing All Employers <div class="small primary btn" style="float: right"><a href="#" id="md1"><i class="icon-user-add"></i> New Employer </a></div></h2>
   <div class="drawer" id="mydrawer1" style="background-color: #fff; box-shadow: none;">
     <div class="row" style="border:1px solid #5b9ede;">
-      <h3 style="text-align: center; border-bottom: 1px solid #c0c0c0">New Employee Record</h3>
+      <h3 style="text-align: center; border-bottom: 1px solid #c0c0c0">Add a new Employer</h3>
       <ul class="twelve columns" style="padding: 30px 20px 20px 30px">
         <%= form_for @employer, :html => {:multipart => true} do |form| %>
             <li class="prepend field">
               <%= form.label :name, :class => 'three columns adjoined' %>
               <%= form.text_field :name, :class => 'xwide text input', :placeholder => 'First name' %>
+            </li>
+            <li class="prepend field">
+              <%= form.label :contact_person, :class => 'three columns adjoined' %>
+              <%= form.text_field :contact_person, :class => 'xwide text input', :placeholder => 'Designated contact person' %>
+            </li>
+            <li class="prepend field">
+              <%= form.label :email, :class => 'three columns adjoined' %>
+              <%= form.text_field :email, :class => 'xwide text input', :placeholder => 'Email' %>
+            </li>
+            <li class="prepend field">
+              <%= form.label :phone, :class => 'three columns adjoined' %>
+              <%= form.text_field :phone, :class => 'xwide text input', :placeholder => 'Phone' %>
+            </li>
+            <li class="prepend field">
+              <%= form.label :address, :class => 'three columns adjoined' %>
+              <%= form.text_field :address, :class => 'xwide text input', :placeholder => 'Address' %>
+            </li>
+            <li class="prepend field">
+              <%= form.label :location, :class => 'three columns adjoined' %>
+              <%= form.text_field :location, :class => 'xwide text input', :placeholder => 'Location' %>
             </li>
             <li style="text-align: center">
               <div class="medium btn primary"><%= form.submit %></div>
@@ -20,9 +40,11 @@
     <thead>
     <tr>
       <th>Name</th>
-      <th>Edit</th>
-      <th>Show</th>
-      <th>Delete</th>
+      <th>Contact Person</th>
+      <th>Location</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th></th>
     </tr>
     </thead>
 
@@ -30,9 +52,15 @@
     <% @employers.each do |employer| %>
         <tr>
           <td><%= employer.name %></td>
-          <td><%= link_to "<i class='icon-pencil'></i>".html_safe, edit_employer_path(employer) %></td>
-          <td><%= link_to "<i class='icon-right-circled'></i>".html_safe, employer %></td>
-          <td><%= link_to "<i class='icon-trash'></i>".html_safe, employer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= employer.contact_person %></td>
+          <td><%= employer.location %></td>
+          <td><%= employer.phone %></td>
+          <td><%= employer.email %></td>
+          <td>
+            <%= link_to "<i class='icon-pencil'></i>".html_safe, edit_employer_path(employer) %>
+            <%= link_to "<i class='icon-right-circled'></i>".html_safe, employer %>
+            <%= link_to "<i class='icon-trash'></i>".html_safe, employer, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
         </tr>
     <% end %>
     </table>
